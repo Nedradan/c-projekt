@@ -1,0 +1,104 @@
+﻿@page 
+@model MuzykaAlbumy.Pages.Albumy.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Kolekcja Albumów</h1>
+
+<p>
+    <a asp-page="Create"><button>Dodaj nowy album</button></a>
+</p>
+
+<form>
+    <p>
+        <h3>Szukaj po:</h3>
+    <p>
+        Gatunek
+        <select asp-for="AlbumyGatunek" asp-items="Model.Gatunki">
+            <option value="">Wszystkie</option>
+        </select>
+    </p>
+    <p>
+        Wykonawca
+        <select asp-for="AlbumyWykonawca" asp-items="Model.Wykonawcy">
+            <option value="">Wszystkie</option>
+        </select>
+    </p>
+    <p>
+        Wersja
+        <select asp-for="AlbumyWersja" asp-items="Model.Wersje">
+            <option value="">Wszystkie</option>
+        </select>
+    </p>
+    <input type="submit" value="Filtruj" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nazwa Albumu
+            </th>
+            <th>
+                Wykonawca
+                <!-- @Html.DisplayNameFor(model => model.Album[0].wykonawca) -->
+            </th>
+            <th>
+                Data Wydania
+                <!-- @Html.DisplayNameFor(model => model.Album[0].dataWydania)-->
+            </th>
+            <th>
+                Gatunek
+                <!--  @Html.DisplayNameFor(model => model.Album[0].gatunekMuzyczny)-->
+            </th>
+            <th>
+                Wersja
+                <!--  @Html.DisplayNameFor(model => model.Album[0].wersjaAlbumu)-->
+            </th>
+            <th>
+                Data Zakupu
+                <!--   @Html.DisplayNameFor(model => model.Album[0].dataZakupu)-->
+            </th>
+            <th>
+                Cena
+                <!--   @Html.DisplayNameFor(model => model.Album[0].cena)-->
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Album)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nazwaAlbumu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wykonawca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dataWydania)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gatunekMuzyczny)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wersjaAlbumu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dataZakupu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cena)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edytuj</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Szczegóły</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
